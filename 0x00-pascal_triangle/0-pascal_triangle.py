@@ -3,9 +3,9 @@
 '''
 
 def pascal_triangle(n):
-    """
-    Generate Pascal's Triangle
-    """
+    '''Create a list of lists of integers representing
+     Pascal's triangle of a given integer.
+    '''
     if n <= 0:
         return []
 
