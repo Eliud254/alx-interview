@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+'''The module working with a Pascal's triangle.
+'''
 
 def pascal_triangle(n):
     """
