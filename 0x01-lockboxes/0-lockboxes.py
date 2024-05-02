@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""A function that determines if a box containing a list
+"""The function that determines if a box containing the list
    of lists can be opened using keys stored in the lists
 """
 
 
 def canUnlockAll(boxes):
-    """Determining if boxes can be unlocked"""
+    """Determine if the boxes can be unlocked"""
     position = 0
     unlocked = {}
 
