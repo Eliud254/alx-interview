@@ -29,7 +29,7 @@ def extract_input(input_line):
 
 
 def print_statistics(total_file_size, status_codes_stats):
-    '''Print accumulated statistics of  HTTP request log.
+    '''Print statistics of  HTTP request log.
     '''
     print('File size: {:d}'.format(total_file_size), flush=True)
     for status_code in sorted(status_codes_stats.keys()):
@@ -45,7 +45,7 @@ def update_metrics(line, total_file_size, status_codes_stats):
         line (str): Line input
 
     Returns:
-        int: New total file size.
+        int: Total file size.
     '''
     line_info = extract_input(line)
     status_code = line_info.get('status_code', '0')
@@ -55,7 +55,7 @@ def update_metrics(line, total_file_size, status_codes_stats):
 
 
 def run():
-    '''The starts log parser.
+    ''' log parser.
     '''
     line_num = 0
     total_file_size = 0
