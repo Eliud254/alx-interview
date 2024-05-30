@@ -8,17 +8,20 @@ import sys
 
 def n_q(t_arr, arr, col, i, n):
     """
-    Finds all possible solutions for the N-queen problem and returns them in a list.
+    Finds all possible solutions for the N-queen problem and returns them
+    in a list.
 
     Args:
-        t_arr (list): Temporary list to store the current points of a possible solution.
+        t_arr (list): Temporary list to store the current points of a
+                      possible solution.
         arr (list): List to store all solutions.
         col (list): List to store columns used by a queen.
         i (int): Current row of the chessboard.
         n (int): Number of queens (or size of the chessboard minus one).
 
     Returns:
-        list: A list of all possible solutions, each solution being a list of queen positions.
+        list: A list of all possible solutions, each solution being a
+              list of queen positions.
     """
     if i > n:
         arr.append(t_arr[:])
@@ -62,5 +65,4 @@ if __name__ == "__main__":
 
     n_q_arr = n_q([], [], [], 0, n - 1)
     for solution in n_q_arr:
-        print(solution:)
-
+        print(solution)
