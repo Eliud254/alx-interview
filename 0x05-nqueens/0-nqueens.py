@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Solution to the N-queens problem.
+The Solution to the N-queens problem.
 """
 
 import sys
@@ -8,7 +8,7 @@ import sys
 
 def solve_nqueens(n):
     """
-    Solves the N-queens problem and prints all solutions.
+    To Solves the N-queens problem and prints all solutions.
 
     Args:
         n (int): The number of queens (and the size of the chessboard).
