@@ -1,76 +1,72 @@
 #!/usr/bin/python3
-"""Prime game"""
+""" Prime Game """
 
-def sieve_of_eratosthenes(n):
+
+def generatePrimeNumbers(limit):
     """
-    Generate a list of prime numbers up to a specified
-    limit using the Sieve of Eratosthenes.
+    Generate a list of prime numbers up to a given limit.
 
     Args:
-        n (int): The upper boundary for generating prime numbers.
+        limit (int): The upper limit for generating prime numbers.
 
     Returns:
-        list: A list containing boolean values indicating
-        prime status for each number up to n.
+        list: A list of prime numbers up to the given limit.
     """
-    sieve = [True] * (n + 1)
-    sieve[0] = sieve[1] = False  # 0 and 1 are not prime numbers
-    for start in range(2, int(n**0.5) + 1):
-        if sieve[start]:
-            for multiple in range(start * start, n + 1, start):
-                sieve[multiple] = False
-    return sieve
+    # List to store prime numbers
+    primes = []
+    # Boolean list to mark prime status of numbers from 0 to limit
+    sieveList = [True] * (limit + 1)
+
+    # Iterate over numbers from 2 to limit
+    for potentialPrime in range(2, limit + 1):
+        # If the number is prime, according to the sieve
+        if sieveList[potentialPrime]:
+            # Add it to the list of primes
+            primes.append(potentialPrime)
+            # Mark multiples of the number as non-prime
+            for multiple in range(potentialPrime, limit + 1, potentialPrime):
+                sieveList[multiple] = False
+
+    return primes
 
 
-def count_primes_up_to(n, sieve):
+def isWinner(numRounds, roundValues):
     """
-    Count the number of prime numbers up to a specified limit.
+    Determine the winner of the Prime Game.
 
     Args:
-        n (int): The upper boundary for counting prime numbers.
-        sieve (list): The sieve list indicating prime status for each number.
+        numRounds (int): The number of rounds in the game.
+        roundValues (list): The upper limits for generating
+        prime numbers in each round.
 
     Returns:
-        int: The count of prime numbers up to the specified limit.
+        str: The name of the winner ('Maria' or 'Ben'
+        ) or None if there's no winner.
     """
-    return sum(sieve[:n + 1])
-
-
-def is_winner(x, nums):
-    """
-    Determine the winner of the prime number game.
-
-    Args:
-        x (int): The number of rounds in the game.
-        nums (list): A list specifying the upper limit
-        for prime numbers to generate in each round.
-
-    Returns:
-        str: The name of the player that won the most rounds
-        ("Maria" or "Ben") or None if the winner cannot be determined.
-    """
-    if not x or not nums:
+    # Check for valid input
+    if not numRounds or not roundValues:
         return None
 
-    max_num = max(nums)
-    sieve = sieve_of_eratosthenes(max_num)
-
+    # Initialize scores for Maria and Ben
     maria_score = ben_score = 0
 
-    for n in nums:
-        prime_count = count_primes_up_to(n, sieve)
-        if prime_count % 2 == 0:
+    # Play each round
+    for i in range(numRounds):
+        # Generate prime numbers up to the current round's limit
+        primes = generatePrimeNumbers(roundValues[i])
+
+        # Check the count of prime numbers
+        if len(primes) % 2 == 0:
+            # Even count: Ben wins this round
             ben_score += 1
         else:
+            # Odd count: Maria wins this round
             maria_score += 1
 
+    # Determine the overall winner
     if maria_score > ben_score:
         return "Maria"
     elif ben_score > maria_score:
         return "Ben"
+
     return None
-
-
-# Example usage
-if __name__ == "__main__":
-    print("Winner: {}".format(is_winner(5, [2, 5, 1, 4, 3])))
