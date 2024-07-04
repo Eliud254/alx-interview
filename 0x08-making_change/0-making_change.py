@@ -22,14 +22,12 @@ def makeChange(coins, total):
         return -1
 
     # Sort the coins in descending order to
-    # use the largest denominations first
     sorted_coins = sorted(coins, reverse=True)
     count = 0
     remaining_value = total
     index = 0
 
-    # Iterate through the sorted coin list to
-    # determine the minimum number of coins
+    # Iterate through the sorted coin list
     while remaining_value > 0 and index < len(sorted_coins):
         # If the current coin can be used to make change
         if remaining_value >= sorted_coins[index]:
