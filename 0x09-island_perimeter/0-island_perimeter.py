@@ -1,37 +1,47 @@
 #!/usr/bin/python3
+"""The module for Island Perimeter
 """
-Defines the function island_perimeter to compute the perimeter
-of an island described in a grid.
-"""
+
 
 def island_perimeter(grid):
     """
-    Calculate the perimeter of the island in the grid.
+    Calculation of the perimeter of the island
+    described in the grid.
 
     Args:
-        grid (list): 2D list of integers (0 for water, 1 for land).
+      the grid (list of list of int): The grid
+        representing the island.
 
     Returns:
-        int: The perimeter of the island.
+        int:  perimeter of the island.
     """
-    perimeter = 0
+    # Determing the number of rows /the columns in the grid
     rows = len(grid)
     cols = len(grid[0])
 
+    # Initializing the perimeter variable to 0
+    perimeter = 0
+
+    # Looping through each cell in the grid
     for i in range(rows):
         for j in range(cols):
+            # Checking if the current cell represents land
             if grid[i][j] == 1:
-                # Check top boundary
+                # Checking the top edge
                 if i == 0 or grid[i-1][j] == 0:
-                    perimeter += 1
-                # Check bottom boundary
-                if i == rows - 1 or grid[i+1][j] == 0:
-                    perimeter += 1
-                # Check left boundary
-                if j == 0 or grid[i][j-1] == 0:
-                    perimeter += 1
-                # Check right boundary
-                if j == cols - 1 or grid[i][j+1] == 0:
+                    perimeter += 1  # Adding 1 to the perimeter for top edge
+
+                # Checking the bottom edge
+                if i == rows-1 or grid[i+1][j] == 0:
                     perimeter += 1
 
+                # Check the left edge
+                if j == 0 or grid[i][j-1] == 0:
+                    perimeter += 1  # Adding 1 to the perimeter for  left edge
+
+                # Checking the right edge
+                if j == cols-1 or grid[i][j+1] == 0:
+                    perimeter += 1  # Adding 1 to the perimeter
+
+    # Returning the total perimeter
     return perimeter
