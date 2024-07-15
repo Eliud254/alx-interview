@@ -1,47 +1,27 @@
 #!/usr/bin/python3
-"""The module for Island Perimeter
+"""island Perimeter
 """
 
 
 def island_perimeter(grid):
     """
-    Calculation of the perimeter of the island
-    described in the grid.
-
+    Calculate the perimeter of the island
     Args:
-      the grid (list of list of int): The grid
-        representing the island.
-
-    Returns:
-        int:  perimeter of the island.
+        grid: 2D list of integers which contains 0(water) or 1(land)
+    Return:
+          Perimeter of the island
     """
-    # Determing the number of rows /the columns in the grid
-    rows = len(grid)
-    cols = len(grid[0])
 
-    # Initializing the perimeter variable to 0
-    perimeter = 0
-
-    # Looping through each cell in the grid
-    for i in range(rows):
-        for j in range(cols):
-            # Checking if the current cell represents land
-            if grid[i][j] == 1:
-                # Checking the top edge
-                if i == 0 or grid[i-1][j] == 0:
-                    perimeter += 1  # Adding 1 to the perimeter for top edge
-
-                # Checking the bottom edge
-                if i == rows-1 or grid[i+1][j] == 0:
-                    perimeter += 1
-
-                # Check the left edge
-                if j == 0 or grid[i][j-1] == 0:
-                    perimeter += 1  # Adding 1 to the perimeter for  left edge
-
-                # Checking the right edge
-                if j == cols-1 or grid[i][j+1] == 0:
-                    perimeter += 1  # Adding 1 to the perimeter
-
-    # Returning the total perimeter
-    return perimeter
+    p = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if (grid[i][j] == 1):
+                if (i <= 0 or grid[i - 1][j] == 0):
+                    p += 1
+                if (i >= len(grid) - 1 or grid[i + 1][j] == 0):
+                    p += 1
+                if (j <= 0 or grid[i][j - 1] == 0):
+                    p += 1
+                if (j >= len(grid[i]) - 1 or grid[i][j + 1] == 0):
+                    p += 1
+    return p
