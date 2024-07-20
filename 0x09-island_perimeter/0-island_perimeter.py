@@ -1,4 +1,3 @@
-Python
 #!/usr/bin/python3
 
 def island_perimeter(grid):
@@ -18,22 +17,19 @@ def island_perimeter(grid):
     for row in range(rows):
         for col in range(cols):
             if grid[row][col] == 1:
-                perimeter += 4  # Add 4 for potential edges of a land cell
+                # Check for land neighbors and subtract shared edges from perimeter
+                perimeter += 4  # Potential perimeter for a land cell
 
-                # Check left neighbor (if not within grid or water, add 1 to perimeter)
-                if col == 0 or grid[row][col - 1] == 0:
-                    perimeter += 1
+                if col > 0 and grid[row][col - 1] == 1:
+                    perimeter -= 2  # Subtract left edge if shared with another land cell
 
-                # Check right neighbor (if not within grid or water, add 1 to perimeter)
-                if col == cols - 1 or grid[row][col + 1] == 0:
-                    perimeter += 1
+                if col < cols - 1 and grid[row][col + 1] == 1:
+                    perimeter -= 2  # Subtract right edge if shared with another land cell
 
-                # Check top neighbor (if not within grid or water, add 1 to perimeter)
-                if row == 0 or grid[row - 1][col] == 0:
-                    perimeter += 1
+                if row > 0 and grid[row - 1][col] == 1:
+                    perimeter -= 2  # Subtract top edge if shared with another land cell
 
-                # Check bottom neighbor (if not within grid or water, add 1 to perimeter)
-                if row == rows - 1 or grid[row + 1][col] == 0:
-                    perimeter += 1
+                if row < rows - 1 and grid[row + 1][col] == 1:
+                    perimeter -= 2  # Subtract bottom edge if shared with another land cell
 
     return perimeter
