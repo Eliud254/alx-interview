@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 def island_perimeter(grid):
-    """Calculates the perimeter of the island in the given grid.
+    """Calculate the perimeter of the island in the given grid.
 
     Args:
         grid (list): A 2D list of integers representing the grid.
