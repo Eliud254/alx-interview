@@ -33,3 +33,4 @@ def island_perimeter(grid):
                     perimeter -= 2  # Subtract bottom edge if shared with another land cell
 
     return perimeter
+
