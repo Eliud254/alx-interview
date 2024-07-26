@@ -1,31 +1,56 @@
 #!/usr/bin/python3
-"""Calculate the perimeter of an island in a grid."""
+""" Prime Game """
 
 
-def island_perimeter(grid):
-<<<<<<< HEAD
-    """Calculate the perimeter of the island in the given grid.
-=======
+def generatePrimeNumbers(limit):
     """
-    Calculate the perimeter of the island in a grid.
->>>>>>> 0b68ed9ba3d24b5ad6a1cfe7ec6c9025de266fcf
+    Generate a list of primes up to limit.
 
     Args:
-        grid: 2D list of integers (0: water, 1: land)
+        limit (int): Upper limit for generating primes.
 
     Returns:
-        Perimeter of the island
+        list: List of prime numbers up to limit.
     """
-    p = 0
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if grid[i][j] == 1:
-                if i <= 0 or grid[i - 1][j] == 0:
-                    p += 1
-                if i >= len(grid) - 1 or grid[i + 1][j] == 0:
-                    p += 1
-                if j <= 0 or grid[i][j - 1] == 0:
-                    p += 1
-                if j >= len(grid[i]) - 1 or grid[i][j + 1] == 0:
-                    p += 1
-    return p
+    primes = []
+    sieveList = [True] * (limit + 1)
+
+    for potentialPrime in range(2, limit + 1):
+        if sieveList[potentialPrime]:
+            primes.append(potentialPrime)
+            for multiple in range(potentialPrime, limit + 1, potentialPrime):
+                sieveList[multiple] = False
+
+    return primes
+
+
+def isWinner(numRounds, roundValues):
+    """
+    Determine the game winner.
+
+    Args:
+        numRounds (int): Number of game rounds.
+        roundValues (list): List of round values.
+
+    Returns:
+        str: Winner's name or None.
+    """
+    if not numRounds or not roundValues:
+        return None
+
+    maria_score = 0
+    ben_score = 0
+
+    for i in range(numRounds):
+        primes = generatePrimeNumbers(roundValues[i])
+
+        if len(primes) % 2 == 0:
+            ben_score += 1
+        else:
+            maria_score += 1
+
+    if maria_score > ben_score:
+        return "Maria"
+    elif ben_score > maria_score:
+        return "Ben"
+    return None
